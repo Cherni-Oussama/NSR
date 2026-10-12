@@ -1,0 +1,95 @@
+\chapter{Méthode d'estimation des gains économiques}
+\label{annexe:gains}
+
+Cette annexe détaille la méthode utilisée pour estimer les gains économiques présentés au chapitre~\ref{chap:cadre-general} (tableaux~\ref{tab:gains-ctaa} et~\ref{tab:gains-pharmaghreb}), les hypothèses retenues et la sensibilité des résultats.
+
+% IMPORTANT : les hypothèses ci-dessous reproduisent les montants estimés. Elles doivent
+% être confirmées (ou remplacées) par des valeurs mesurées sur le terrain.
+
+\section{Principe de la méthode}
+
+Le gain annuel d'une solution de digitalisation provient essentiellement du temps libéré pour le personnel, auquel s'ajoutent des économies directes (papier, consommables). Pour chaque source de gain $i$, on estime :
+\[
+G_i = N_i \times \Delta t_i \times C_h
+\qquad\text{et}\qquad
+G_{\text{an}} = \sum_i G_i + E_{\text{directes}}
+\]
+où $N_i$ est le nombre annuel d'opérations concernées, $\Delta t_i$ le temps gagné par opération (en heures), $C_h$ le coût horaire chargé du personnel et $E_{\text{directes}}$ les économies directes. La méthode se déroule en six étapes :
+\begin{enumerate}
+    \item \textbf{identifier les sources de gain} à partir de l'analyse de l'existant et des sept Muda (saisie, recherche, archivage, erreurs, consommables, disponibilité des équipements) ;
+    \item \textbf{quantifier les volumes} $N_i$ à partir des données d'activité (demandes par jour, échantillons par demande, mesures par jour) et d'un nombre de 250 jours ouvrés par an ;
+    \item \textbf{mesurer le temps gagné} $\Delta t_i$ par chronométrage d'une vingtaine d'opérations avant et après la digitalisation ;
+    \item \textbf{valoriser} ce temps au coût horaire chargé $C_h$ (salaire brut et charges patronales, divisés par le nombre d'heures travaillées) ;
+    \item \textbf{encadrer l'incertitude} par deux scénarios : un scénario prudent (volumes bas) et un scénario optimiste (volumes hauts) ;
+    \item \textbf{calculer les indicateurs} (délai de récupération et \ac{ROI}) et \textbf{tester leur sensibilité} aux hypothèses les plus incertaines.
+\end{enumerate}
+
+\section{Application au CTAA}
+
+Le tableau~\ref{tab:hyp-ctaa} présente les hypothèses retenues pour le \ac{CTAA}, avec un coût horaire chargé de 15~\ac{TND}/h et 250 jours ouvrés par an. Les volumes s'appuient sur l'analyse de l'existant : 10 à 20 demandes par jour, soit en moyenne une soixantaine d'échantillons.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|p{2.9cm}|Y|r|r|}
+\hline
+\enteteligne \entete{Source de gain} & \entete{Hypothèse de calcul} & \entete{Prudent} & \entete{Optimiste} \\ \hline
+Traitement des demandes & 15 (prudent) ou 20 (optimiste) demandes/jour $\times$ 250 j $\times$ 20 min gagnées $\times$ 15 TND/h & 18\,750 & 25\,000 \\ \hline
+Recherche des échantillons & 60 échantillons/jour $\times$ 250 j $\times$ 6 min gagnées $\times$ 15 TND/h & 22\,500 & 22\,500 \\ \hline
+Archivage & 200 h/an de classement évitées $\times$ 15 TND/h & 3\,000 & 3\,000 \\ \hline
+Réduction des erreurs & 100 h/an de détection et de correction évitées $\times$ 15 TND/h & 1\,500 & 1\,500 \\ \hline
+Papier & Économie directe d'environ 100 TND/mois $\times$ 12 & 1\,200 & 1\,200 \\ \hline
+\rowcolor{bleuclair} \multicolumn{2}{|l|}{\textbf{Total (TND/an)}} & \textbf{46\,950} & \textbf{53\,200} \\ \hline
+\end{tabularx}
+\caption{Hypothèses de calcul des gains annuels au CTAA.}
+\label{tab:hyp-ctaa}
+\end{table}
+
+\section{Application à Pharmaghreb}
+
+Le tableau~\ref{tab:hyp-pharmaghreb} présente les hypothèses retenues pour Pharmaghreb, avec un coût horaire chargé de 20~\ac{TND}/h, plus élevé que dans le secteur public, et 250 jours ouvrés par an.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|p{2.9cm}|Y|r|r|}
+\hline
+\enteteligne \entete{Source de gain} & \entete{Hypothèse de calcul} & \entete{Prudent} & \entete{Optimiste} \\ \hline
+Saisies manuelles & 144 ou 180 mesures/jour $\times$ 250 j $\times$ 1 min de saisie et de vérification $\times$ 20 TND/h & 12\,000 & 15\,000 \\ \hline
+Temps de collecte & 2 h ou 2,5 h/jour de relevés et de regroupement $\times$ 250 j $\times$ 20 TND/h & 10\,000 & 12\,500 \\ \hline
+Disponibilité des équipements & 375 h/an d'immobilisation évitées $\times$ 20 TND/h & 7\,500 & 7\,500 \\ \hline
+Centralisation des données & 1 h/jour de consolidation évitée $\times$ 250 j $\times$ 20 TND/h & 5\,000 & 5\,000 \\ \hline
+Réduction des erreurs & 100 h/an d'investigations et de reprises évitées $\times$ 20 TND/h & 2\,000 & 2\,000 \\ \hline
+\rowcolor{bleuclair} \multicolumn{2}{|l|}{\textbf{Total (TND/an)}} & \textbf{36\,500} & \textbf{42\,000} \\ \hline
+\end{tabularx}
+\caption{Hypothèses de calcul des gains annuels chez Pharmaghreb.}
+\label{tab:hyp-pharmaghreb}
+\end{table}
+
+Le coût de déploiement n'étant pas encore arrêté, le \ac{ROI} réel ne peut pas encore être calculé. On peut en revanche déterminer le \textbf{seuil de rentabilité} : le \ac{ROI} sur trois ans reste positif tant que l'investissement $I_0$ ne dépasse pas trois années de gains, soit 109\,500~TND dans le scénario prudent et 126\,000~TND dans le scénario optimiste. De même, l'investissement est récupéré en moins d'un an s'il reste inférieur au gain annuel, soit 36\,500~TND dans le scénario prudent.
+
+\section{Analyse de sensibilité}
+
+Le calcul du chapitre~\ref{chap:cadre-general} suppose qu'aucun coût récurrent ne s'ajoute à l'investissement initial. Le tableau~\ref{tab:sensibilite} montre l'effet, pour le \ac{CTAA}, d'un coût récurrent annuel $M$ (maintenance, hébergement) de 10\,000~TND, puis d'une baisse de 20\,\% des gains. Le \ac{ROI} devient alors :
+\[
+\text{ROI}_{3\,\text{ans}} = \frac{3\,(G_{\text{an}} - M) - I_0}{I_0} \times 100
+\]
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|l|r|r|r|r|}
+\hline
+\enteteligne & \multicolumn{2}{c|}{\entete{Délai (mois)}} & \multicolumn{2}{c|}{\entete{ROI sur 3 ans}} \\ \hline
+\rowcolor{bleuclair} \textbf{Cas} & \textbf{Prudent} & \textbf{Optimiste} & \textbf{Prudent} & \textbf{Optimiste} \\ \hline
+Cas de base & 15,3 & 13,5 & 134,75\,\% & 166\,\% \\ \hline
+Coût récurrent de 10\,000 TND/an & 19,5 & 16,7 & 84,75\,\% & 116\,\% \\ \hline
+Gains réduits de 20\,\% & 19,2 & 16,9 & 87,8\,\% & 112,8\,\% \\ \hline
+\end{tabular}
+\caption{Sensibilité du délai de récupération et du ROI au CTAA.}
+\label{tab:sensibilite}
+\end{table}
+
+Même dans ces cas défavorables, l'investissement est récupéré en moins de deux ans et le \ac{ROI} sur trois ans reste largement positif, ce qui confirme la robustesse de la conclusion.

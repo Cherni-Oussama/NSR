@@ -1,0 +1,25 @@
+\chapter*{Conclusion générale et perspectives}
+\addcontentsline{toc}{chapter}{Conclusion générale et perspectives}
+\markboth{Conclusion générale et perspectives}{}
+
+Ce projet de fin d'études, réalisé au sein de BQube ITs, avait pour objectif de contribuer à la digitalisation des processus analytiques de laboratoire, de la gestion des échantillons jusqu'aux équipements connectés. Il a été mené sur deux terrains complémentaires, qui couvrent les deux niveaux de la transformation numérique : le système d'information et les équipements.
+
+Au \textbf{Centre Technique de l'Agro-Alimentaire}, nous avons participé au paramétrage et à la mise en service d'un \ac{LIMS} : création des utilisateurs et de leurs droits, configuration des produits et des packs d'analyses, étiquetage des échantillons par code \ac{QR} dans le module de gestion des demandes. Nous avons ensuite conçu et développé un module de traçabilité, en \ac{PHP}, JavaScript et PostgreSQL, qui reconstitue l'historique d'une préparation ou d'une réception à partir de la lecture d'un code ou de la saisie d'un numéro de série. La formation et l'accompagnement des utilisateurs ont permis d'ancrer ces outils dans les pratiques quotidiennes du laboratoire. L'estimation des gains montre un investissement récupéré en 13 à 15 mois et un \ac{ROI} supérieur à 130\,\% sur trois ans.
+
+Aux \textbf{Laboratoires Pharmaghreb}, nous avons étudié la connectivité de dix équipements de laboratoire et identifié, pour chacun, la voie de communication la plus adaptée : Ethernet avec les protocoles \ac{MT-SICS}, \ac{TCP}/\ac{IP} ou \ac{FTP}, ou liaison \ac{RS-232}. Pour les équipements qui ne disposent que d'une liaison série, nous avons conçu, réalisé et testé un module d'acquisition à base d'ESP8266, qui récupère les mesures stables d'une balance, les associe à l'opérateur identifié par badge \ac{NFC} et les met à disposition par \ac{Wi-Fi}. Ce prototype est fonctionnel et attend son déploiement.
+
+Sur le plan personnel, ce projet a constitué une expérience particulièrement enrichissante. Il nous a permis de consolider nos connaissances en Industrie~4.0 et en Internet industriel des objets, de mettre en pratique le développement web et l'électronique embarquée, et de découvrir les exigences d'un déploiement réel : écoute des utilisateurs, conduite du changement et respect des contraintes réglementaires des laboratoires.
+
+\section*{Perspectives}
+
+Plusieurs évolutions peuvent prolonger ce travail :
+\begin{itemize}
+    \item \textbf{généraliser le code \ac{QR}} aux autres modules du \ac{LIMS} (réceptions, préparations, stocks), afin d'uniformiser l'identification ;
+    \item \textbf{renforcer le module de traçabilité} par des requêtes paramétrées côté serveur, des tableaux de bord et un système d'alertes ;
+    \item \textbf{déployer le module d'acquisition} sur site et intégrer ses mesures au \ac{LIMS}, pour assurer une continuité numérique de l'équipement jusqu'au rapport d'analyse ;
+    \item \textbf{connecter les autres équipements} étudiés, à l'aide de modules ESP32 pour les liaisons série et des interfaces Ethernet pour les équipements récents ;
+    \item \textbf{mettre en place une supervision centralisée} de l'état et des performances des équipements ;
+    \item \textbf{exploiter les données collectées} par des outils d'analyse et d'intelligence artificielle, afin de détecter les anomalies et d'évoluer vers la maintenance prédictive.
+\end{itemize}
+
+À plus long terme, ces évolutions conduiraient à un laboratoire dans lequel les équipements ne sont plus des systèmes isolés, mais des sources de données connectées au système d'information, au service de la qualité, de la traçabilité et de la prise de décision.

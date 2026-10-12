@@ -1,0 +1,185 @@
+\documentclass[a4paper,12pt,oneside]{book}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Encodage, langue et police
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[french]{babel}
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,headheight=15pt]{geometry}
+\linespread{1.15}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Paquets
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{float}
+\usepackage{array,booktabs,tabularx,multirow,colortbl}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage[bottom]{footmisc}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,labelsep=endash}
+\usepackage{listings}
+\usepackage[footnote]{acronym}
+\usepackage{pgfgantt}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,shapes.multipart,arrows.meta,positioning,fit,calc,backgrounds}
+\usepackage{url}
+\usepackage[round]{natbib}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,
+  pdftitle={Transformation numérique des processus analytiques},
+  pdfauthor={Nesrine Ferchichi}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Couleurs et styles communs (tableaux, schémas TikZ)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{bleu}{RGB}{31,78,121}
+\definecolor{bleuclair}{RGB}{221,235,247}
+\definecolor{vert}{RGB}{56,118,29}
+\definecolor{orange}{RGB}{191,96,0}
+\definecolor{gris}{RGB}{80,80,80}
+
+\newcommand{\entete}[1]{\textcolor{white}{\textbf{#1}}}
+\newcommand{\enteteligne}{\rowcolor{bleu}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\tikzset{
+  bloc/.style={draw=bleu, fill=bleuclair, rounded corners=3pt, align=center,
+               minimum height=9mm, text width=#1, font=\small},
+  bloc/.default=3cm,
+  blocvert/.style={bloc=#1, draw=vert, fill=vert!10},
+  blocvert/.default=3cm,
+  blocorange/.style={bloc=#1, draw=orange, fill=orange!10},
+  blocorange/.default=3cm,
+  fleche/.style={-{Stealth[length=2.4mm]}, thick, draw=gris},
+  doublefleche/.style={{Stealth[length=2.4mm]}-{Stealth[length=2.4mm]}, thick, draw=gris},
+  etiq/.style={font=\scriptsize, align=center, text=gris},
+  cadre/.style={draw=gris, dashed, rounded corners=4pt, inner sep=3mm},
+  decision/.style={diamond, aspect=2.2, draw=orange, fill=orange!10, align=center,
+                   font=\small, inner sep=1pt},
+  debutfin/.style={rounded rectangle, draw=bleu, fill=bleu, text=white,
+                   font=\small\bfseries, minimum height=8mm, minimum width=2.4cm},
+  acteur/.style={font=\small, align=center},
+  cu/.style={ellipse, draw=bleu, fill=bleuclair, align=center, font=\small,
+             minimum height=9mm, text width=3.6cm, inner sep=1pt},
+}
+
+% Petit bonhomme UML pour les diagrammes de cas d'utilisation
+\newcommand{\bonhomme}[2]{% #1 = position, #2 = nom
+  \begin{scope}[shift={#1}, thick, draw=gris]
+    \draw (0,0.55) circle (0.18);
+    \draw (0,0.37) -- (0,-0.15);
+    \draw (-0.3,0.2) -- (0.3,0.2);
+    \draw (0,-0.15) -- (-0.22,-0.55);
+    \draw (0,-0.15) -- (0.22,-0.55);
+    \node[acteur, below] at (0,-0.6) {#2};
+  \end{scope}}
+
+\lstset{basicstyle=\ttfamily\footnotesize, breaklines=true, frame=single,
+  rulecolor=\color{gris}, backgroundcolor=\color{bleuclair!50},
+  keywordstyle=\color{bleu}\bfseries, commentstyle=\color{vert}\itshape,
+  showstringspaces=false, columns=fullflexible, keepspaces=true,
+  literate={é}{{\'e}}1 {è}{{\`e}}1 {à}{{\`a}}1 {ç}{{\c c}}1 {ê}{{\^e}}1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Titres, en-têtes et pieds de page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{bleu}}{\chaptertitlename\ \thechapter}{16pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-30pt}{30pt}
+\titleformat{\section}{\normalfont\Large\bfseries\color{bleu}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\bfseries\thepage}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0.8pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+\setlist{itemsep=2pt, topsep=4pt}
+\raggedbottom
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frontmatter
+\input{page_de_garde}
+\input{signature}
+\input{Remerciement}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\chapter*{Liste des sigles et acronymes}
+\addcontentsline{toc}{chapter}{Liste des sigles et acronymes}
+\markboth{Liste des sigles et acronymes}{}
+\begin{acronym}[ISO/CEI 17025]
+  \acro{AJAX}{\emph{Asynchronous JavaScript and XML}}
+  \acro{BPF}{Bonnes Pratiques de Fabrication}
+  \acro{CTAA}{Centre Technique de l'Agro-Alimentaire}
+  \acro{DLC}{Date Limite de Consommation}
+  \acro{FTP}{\emph{File Transfer Protocol}}
+  \acro{HTML}{\emph{HyperText Markup Language}}
+  \acro{HTTP}{\emph{HyperText Transfer Protocol}}
+  \acro{I2C}[I$^2$C]{\emph{Inter-Integrated Circuit}}
+  \acro{IHM}{Interface Homme-Machine}
+  \acro{IIoT}{\emph{Industrial Internet of Things}}
+  \acro{IoT}{\emph{Internet of Things}}
+  \acro{IP}{\emph{Internet Protocol}}
+  \acro{ISO/CEI 17025}{Norme relative aux exigences générales concernant la compétence des laboratoires d'étalonnages et d'essais}
+  \acro{JSON}{\emph{JavaScript Object Notation}}
+  \acro{LCD}{\emph{Liquid Crystal Display}}
+  \acro{LIMS}{\emph{Laboratory Information Management System}}
+  \acro{M2M}{\emph{Machine-to-Machine}}
+  \acro{MES}{\emph{Manufacturing Execution System}}
+  \acro{MT-SICS}{\emph{Mettler Toledo Standard Interface Command Set}}
+  \acro{NFC}{\emph{Near Field Communication}}
+  \acro{OGM}{Organisme Génétiquement Modifié}
+  \acro{PHP}{\emph{PHP: Hypertext Preprocessor}}
+  \acro{QR}{\emph{Quick Response} (code)}
+  \acro{ROI}{\emph{Return On Investment} (retour sur investissement)}
+  \acro{RS-232}{\emph{Recommended Standard 232}}
+  \acro{SQL}{\emph{Structured Query Language}}
+  \acro{TCP}{\emph{Transmission Control Protocol}}
+  \acro{TND}{Dinar tunisien}
+  \acro{UART}{\emph{Universal Asynchronous Receiver-Transmitter}}
+  \acro{UML}{\emph{Unified Modeling Language}}
+  \acro{Wi-Fi}{\emph{Wireless Fidelity}}
+  \acro{XML}{\emph{eXtensible Markup Language}}
+\end{acronym}
+
+\mainmatter
+\input{introduction}
+\input{chapitre1}
+\input{chapitre2}
+\input{chapitre3}
+\input{chapitre4}
+\input{conclusion}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliographie}
+\renewcommand{\bibname}{Bibliographie}
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\appendix
+\input{annexe_gains}
+
+\cleardoublepage
+\input{abstract}
+
+\end{document}
